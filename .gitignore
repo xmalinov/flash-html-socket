@@ -1,3 +1,17 @@
+<<<<<<< HEAD
 # https://git-scm.com/docs/gitignore
 # https://help.github.com/articles/ignoring-files
 # Example .gitignore files: https://github.com/github/gitignore
+=======
+# Build and Release Folders
+bin/
+bin-debug/
+bin-release/
+
+# Other files and folders
+.settings/
+
+# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
+# should NOT be excluded as they contain compiler settings and other important
+# information for Eclipse / Flash Builder.
+>>>>>>> 16721037ed63dbc262bf0714d024fbd16d020e7d

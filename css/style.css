@@ -1,0 +1,70 @@
+
+body {
+  width: 100%;
+  height: 100%;
+  background: #ef8812;
+  font-family: arial, sans-serif;
+}
+
+.wrapper {
+}
+
+.log-message-block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: auto;
+  font-size: 14px;
+}
+
+.buttons-block {
+  position: absolute;
+  width: 320px;
+  height: 250px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #aaaaaa;
+}
+
+.left-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 140px;
+  background: #ffee12;
+  cursor: pointer;
+}
+
+.right-btn {
+   position: absolute;
+  top: 0;
+  right: 0;
+  width: 140px;
+  height: 140px;
+  background: #ffee12;
+  cursor: pointer;
+}
+
+.test-btn {
+   position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 320px;
+  height: 70px;
+  background: #ffee12;
+  cursor: pointer;
+}
+
+.log-events-block {
+   position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: auto;
+  font-size: 14px;
+}

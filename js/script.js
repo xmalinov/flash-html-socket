@@ -18,7 +18,7 @@
     logOrientation();
   });
 
-  var i=0;
+  var i = 0;
 
   $('#left-btn').on('touchstart click', function (event) {
     event.stopPropagation();
@@ -61,5 +61,30 @@
       return false;
     }
   });
+
+
+  var socket = io.connect('http://78.24.218.48:10843');
+
+  socket.on('connect', function () {
+    console.log('connected');
+  });
+
+  socket.on('announcement', function (msg) {
+
+  });
+
+  socket.on('reconnect', function () {
+
+  });
+
+  socket.on('reconnecting', function () {
+
+  });
+
+  socket.on('error', function (e) {
+
+  });
+
+
 
 })();

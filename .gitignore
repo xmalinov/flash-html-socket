@@ -7,3 +7,5 @@ bin-release/
 *.apk
 
 *.log
+
+socketTest.html

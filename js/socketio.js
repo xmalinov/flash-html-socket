@@ -4,68 +4,46 @@ leftStop
 rightStart
 rightStop
 */
-function policy() {
-  var xml = '<?xml version="1.0" encoding="UTF-8" ?>\n';
-  xml += '<!DOCTYPE cross-domain-policy SYSTEM "http://www.adobe.com/xml/dtds/cross-domain-policy.dtd">\n';
-  xml += '<cross-domain-policy>\n';
-  xml += '<site-control permitted-cross-domain-policies="all" />\n';
-  xml += '<allow-access-from domain="*" to-ports="*" />\n';
-  xml += '<allow-http-request-headers-from domain="*" headers="*" />\n';
-  xml += '</cross-domain-policy>\n';
 
-  return xml;
-}
+var server = require('http').createServer();
+var io = require('socket.io')(server);
 
-var io = require('socket.io').listen(10843);
-io.set('log level', 1);
 
-// Навешиваем обработчик на подключение нового клиента
-io.sockets.on('connection', function (socket) {
-  // Т.к. чат простой - в качестве ников пока используем первые 5 символов от ID сокета
+io.on('connection', function (socket) {
   var ID = (socket.id).toString().substr(0, 5);
   var time = (new Date).toLocaleTimeString();
+  console.log('connected ' + ID + '; at ' + time);
+
+  //socket.emit('news', {hello: 'world'});
+
+  //socket.emit('message', "this is a test");
 
   /*
-  // Посылаем клиенту сообщение о том, что он успешно подключился и его имя
-  socket.json.send({
-    'event': 'connected',
-    'name': ID,
-    'time': time
-  });
-  // Посылаем всем остальным пользователям, что подключился новый клиент и его имя
-  socket.broadcast.json.send({
-    'event': 'userJoined',
-    'name': ID,
-    'time': time
-  });
-  // Навешиваем обработчик на входящее сообщение
-  socket.on('message', function (msg) {
-    var time = (new Date).toLocaleTimeString();
-    // Уведомляем клиента, что его сообщение успешно дошло до сервера
-    socket.json.send({
-      'event': 'messageSent',
-      'name': ID,
-      'text': msg,
-      'time': time
+  setInterval(function () {
+    socket.emit('date', {
+      'date': new Date()
     });
-    // Отсылаем сообщение остальным участникам чата
-    socket.broadcast.json.send({
-      'event': 'messageReceived',
-      'name': ID,
-      'text': msg,
-      'time': time
-    })
+  }, 1000);
+*/
+  socket.on('webGamepadClick', function (data) {
+    socket.broadcast.emit('commandToFlash', data);
+    console.log(data);
   });
-  // При отключении клиента - уведомляем остальных
-  socket.on('disconnect', function () {
-    var time = (new Date).toLocaleTimeString();
-    io.sockets.json.send({
-      'event': 'userSplit',
-      'name': ID,
-      'time': time
-    });
+
+  socket.on('event', function (data) {});
+
+  socket.on('data', function (data) {
+    console.log('data from flash: ', data);
+    socket.emit('data', 'hello');
   });
-  */
+
+  socket.on('disconnect', function (socket) {
+    console.log('disconnect');
+  });
+
 });
 
-console.log('Server running at http://78.24.218.48:10843/');
+
+server.listen(10843, function () {
+  console.log('Server running at http://78.24.218.48:10843 since ' + new Date());
+});

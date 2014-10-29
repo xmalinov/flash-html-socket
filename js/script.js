@@ -29,6 +29,9 @@
       i++;
       console.log('Left btn click');
       event.handled = true;
+
+      socket.emit('webGamepadClick', 'leftClick');
+
     } else {
       return false;
     }
@@ -43,6 +46,9 @@
       i++;
       console.log('Right btn click');
       event.handled = true;
+
+      socket.emit('webGamepadClick', 'rightClick');
+
     } else {
       return false;
     }
@@ -57,6 +63,9 @@
       i++;
       console.log('Test btn click');
       event.handled = true;
+
+      socket.emit('webGamepadClick', 'testClick');
+
     } else {
       return false;
     }
@@ -85,6 +94,9 @@
 
   });
 
+  socket.on('date', function (data) {
+    console.log(data);
+  });
 
 
 })();

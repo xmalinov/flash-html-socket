@@ -59,8 +59,6 @@ server.listen(10843, '78.24.218.48');
 console.log('Server running at http://78.24.218.48:10843/');
 
 /*
-var net = require('net');
-
 var server = net.createServer(function (socket) {
   //socket.write('Echo server\r\n');
   socket.pipe(socket);
